@@ -1,0 +1,11 @@
+.list {
+  display: grid;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin-left: -15px;
+}
+
+.item {
+  margin-bottom: 8px;
+}

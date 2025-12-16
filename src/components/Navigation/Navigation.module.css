@@ -1,0 +1,31 @@
+/*
+.nav {
+  width: auto;
+  padding: 15px 30px;
+  background: rgba(10, 12, 20, 0.9);
+  border-bottom: 1px solid #1f1f1f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+*/
+
+.navLeft a,
+.navRight a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #d0d0ff;
+  font-size: 18px;
+}
+
+.navRight a:last-child {
+  margin-right: 0;
+}
+
+.navRight a:hover,
+.navLeft a:hover {
+  color: #76ff47;
+}
+.home {
+  color: #fff;
+}
