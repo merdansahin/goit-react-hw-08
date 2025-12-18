@@ -6,11 +6,11 @@ import {
   selectIsRefreshing,
 } from "../../redux/auth/selectors";
 
-export default function PrivateRoute({ component, redirectTo = "/" }) {
+export default function PrivateRoute({ element, redirectTo = "/" }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isRefreshing = useSelector(selectIsRefreshing);
 
-  const shouldRedirect = !isLoggedIn && !isRefreshing;
+  if (isRefreshing) return null; // Kullanıcı verisi yenilenirken hiçbir şey gösterme
 
-  return shouldRedirect ? <Navigate to={redirectTo} /> : component;
+  return isLoggedIn ? element : <Navigate to={redirectTo} />;
 }

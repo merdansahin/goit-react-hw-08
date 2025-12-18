@@ -5,6 +5,13 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
   async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    // 2. Token varsa axios başlığına ekle (401 hatasını önlemek için kritik)
+    if (token) {
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+    }
     try {
       const res = await axios.get("/contacts");
       return res.data;

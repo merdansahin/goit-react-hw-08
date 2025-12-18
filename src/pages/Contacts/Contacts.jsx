@@ -16,12 +16,16 @@ export default function Contacts() {
 
   return (
     <div className={css.container}>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <h2>Search</h2>
-      <Filter />
-      <h2>Contacts</h2>
-      <ContactList />
+      <div className={css.phone}>
+        <h1>Phonebook</h1>
+        <ContactForm />
+        <h2>Search</h2>
+        <Filter />
+      </div>
+      <div className={css.contacts}>
+        <h2>Contacts</h2>
+        <ContactList />
+      </div>
     </div>
   );
 }

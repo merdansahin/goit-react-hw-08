@@ -9,9 +9,16 @@ export default function RegistrationForm() {
 
   const initialValues = { name: "", email: "", password: "" };
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(register(values));
-    resetForm();
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      const data = await dispatch(register(values)).unwrap();
+      console.log("REGISTER SUCCESS:", data);
+      alert("Kayıt başarılı, şimdi giriş yapabilirsin!");
+      resetForm();
+    } catch (errorMessage) {
+      console.log("REGISTER REJECTED:", errorMessage);
+      alert(`Kayıt başarısız: ${errorMessage}`);
+    }
   };
 
   return (
@@ -31,6 +38,7 @@ export default function RegistrationForm() {
             className={css.input}
             type="password"
             name="password"
+            autoComplete="new-password"
             required
           />
         </label>

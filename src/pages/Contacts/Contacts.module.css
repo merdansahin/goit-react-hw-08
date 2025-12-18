@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 150px;
+}
+.phone {
+  width: auto;
+  margin-left: -100px;
+  margin-top: -150px;
+}
+.contacts {
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+  margin-top: -150px;
+  width: 700px;
+  height: auto;
+}

@@ -9,31 +9,55 @@ export default function LoginForm() {
 
   const initialValues = { email: "", password: "" };
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(logIn(values));
-    resetForm();
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      const data = await dispatch(logIn(values)).unwrap();
+      console.log("LOGIN SUCCESS:", data);
+      // burada istersen navigate('/contacts') yapabilirsin
+      resetForm();
+    } catch (errorMessage) {
+      console.log("LOGIN REJECTED:", errorMessage);
+      alert(`Giriş başarısız: ${errorMessage}`);
+    }
   };
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-      <Form className={css.form}>
-        <label className={css.label}>
-          Email
-          <Field className={css.input} type="email" name="email" required />
-        </label>
-        <label className={css.label}>
-          Password
-          <Field
-            className={css.input}
-            type="password"
-            name="password"
-            required
-          />
-        </label>
-        <button className={css.button} type="submit">
-          Log in
-        </button>
-      </Form>
+      {({ values, handleChange, handleBlur }) => (
+        <Form className={css.form}>
+          <label className={css.label}>
+            Email
+            <input
+              name="email"
+              type="email"
+              className={css.input}
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              autoComplete="email"
+              required
+            />
+          </label>
+
+          <label className={css.label}>
+            Password
+            <input
+              name="password"
+              type="password"
+              className={css.input}
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              autoComplete="current-password"
+              required
+            />
+          </label>
+
+          <button className={css.button} type="submit">
+            Log in
+          </button>
+        </Form>
+      )}
     </Formik>
   );
 }
